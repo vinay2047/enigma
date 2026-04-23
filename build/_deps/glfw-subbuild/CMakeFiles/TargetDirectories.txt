@@ -1,0 +1,3 @@
+/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir
+/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/edit_cache.dir
+/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/rebuild_cache.dir
