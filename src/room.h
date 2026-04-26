@@ -46,6 +46,7 @@ struct GameObject {
     float curAngle    {0.f};
     int   leadsToRoom {-1};
     float animSpeed   {120.f};  // degrees/sec
+    glm::vec3 doorAxis{0.f, 1.f, 0.f}; // axis of rotation for door/lever
 
     // Light (attached lamp mesh)
     int   lightIndex  {-1};

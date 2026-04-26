@@ -8,6 +8,9 @@ std::string Inventory::nameOf(ItemType t) {
         case ItemType::CODE_NOTE:   return "Code Note";
         case ItemType::BOOK_CLUE:   return "Old Book";
         case ItemType::MIRROR_SHARD:return "Mirror Shard";
+        case ItemType::CRYSTAL_RED:  return "Red Crystal";
+        case ItemType::CRYSTAL_BLUE: return "Blue Crystal";
+        case ItemType::CRYSTAL_GREEN:return "Green Crystal";
         default: return "Unknown";
     }
 }
@@ -19,6 +22,9 @@ std::string Inventory::descOf(ItemType t) {
         case ItemType::CODE_NOTE:   return "Scrawled numbers: 4821";
         case ItemType::BOOK_CLUE:   return "Lever order: Left, Right, Middle.";
         case ItemType::MIRROR_SHARD:return "A shard of glass.";
+        case ItemType::CRYSTAL_RED:  return "A warm crimson crystal, pulsing with energy.";
+        case ItemType::CRYSTAL_BLUE: return "An icy blue crystal, cold to the touch.";
+        case ItemType::CRYSTAL_GREEN:return "A verdant crystal that hums faintly.";
         default: return "";
     }
 }

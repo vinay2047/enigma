@@ -3,11 +3,11 @@
 
 class Player {
 public:
-    glm::vec3 position    {0.f, 1.7f, 0.f};
+    glm::vec3 position    {0.f, 0.f, 2.5f};
     float     yaw         {-90.f};
     float     pitch       {0.f};
     float     speed       {4.0f};
-    float     sensitivity {0.008f};
+    float     sensitivity {0.05f};
     float     height      {1.7f};
     float     crouchHeight{0.9f};
     bool      crouching   {false};

@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <functional>
 #include <cmath>
+#include <algorithm>
 
 // ── Procedural texture generation ────────────────────────────────────────────
 unsigned int makeProceduralTexture(int w, int h,
@@ -80,9 +81,16 @@ void GameObject::updateDoorAnim(float dt) {
     if (!isDoor) return;
     float target = isOpen ? openAngle : 0.f;
     float delta  = target - curAngle;
-    if (std::abs(delta) < 0.1f) { curAngle = target; return; }
+    if (std::abs(delta) < 0.1f) {
+        curAngle = target;
+        transform.rotation = doorAxis * curAngle;
+        // When door is fully open, disable collision so player can walk through
+        solid = !isOpen;
+        return;
+    }
     curAngle += (delta > 0 ? 1.f : -1.f) * animSpeed * dt;
     curAngle  = std::clamp(curAngle, std::min(0.f, openAngle), std::max(0.f, openAngle));
+    transform.rotation = doorAxis * curAngle;
 }
 
 // ── SceneManager helpers ──────────────────────────────────────────────────────
@@ -142,40 +150,41 @@ void SceneManager::buildEntryHall(Room& r) {
         Material cm; cm.color={0.35f,0.22f,0.10f};
         r.objects.push_back(makeBox("Cabinet",{-4.0f,0.6f,-1.f},{0.8f,1.2f,0.5f},cm));
 
-        // Locked drawer
-        GameObject drawer = makeBox("Drawer",{-4.0f,0.9f,-0.75f},{0.6f,0.18f,0.04f},cm);
+        // Locked drawer — solid block embedded in cabinet
+        GameObject drawer = makeBox("Drawer",{-4.0f,0.9f,-0.95f},{0.6f,0.18f,0.4f},cm);
         drawer.interaction = InteractionType::INSPECT;
-        drawer.interactMsg = "The drawer is locked. You need a key.";
-        drawer.puzzleId    = 0;  // Hidden button puzzle
+        drawer.interactMsg = "The drawer is locked shut.";
+        drawer.puzzleId    = 0;
         r.objects.push_back(drawer);
     }
 
-    // Painting (hides button)
+    // Painting (hides button) — removed from wall when interacted
     {
-        Material pm; pm.color={0.6f,0.3f,0.1f};
+        Material pm; pm.color={0.55f,0.28f,0.08f};
         GameObject painting = makeBox("Painting",{-0.9f,1.8f,-4.89f},{1.0f,0.7f,0.05f},pm,false);
         painting.interaction = InteractionType::PUZZLE;
-        painting.interactMsg = "A dark oil painting. Something feels off about it.";
+        painting.interactMsg = "A dark oil painting. [E] to take it off the wall.";
         painting.puzzleId    = 0;
         r.objects.push_back(painting);
 
-        // Hidden button behind painting (only visible/interactable after painting inspected)
-        Material bm; bm.color={0.1f,0.1f,0.1f};
-        GameObject btn = makeBox("HiddenButton",{-0.9f,1.8f,-4.88f},{0.12f,0.12f,0.05f},bm,false);
+        // Hidden button behind painting (only visible after painting removed)
+        Material bm; bm.color={0.08f,0.08f,0.08f};
+        GameObject btn = makeBox("HiddenButton",{-0.9f,1.8f,-4.87f},{0.14f,0.14f,0.06f},bm,false);
         btn.visible    = false;
         btn.interaction= InteractionType::PUZZLE;
-        btn.interactMsg= "A hidden button!";
+        btn.interactMsg= "Press the hidden button! [E]";
         btn.puzzleId   = 0;
         r.objects.push_back(btn);
     }
 
-    // Brass key (spawns after puzzle 0 solved — starts invisible)
+    // Brass key — spawns resting on top of the pulled-out drawer block
     {
-        Material km; km.color={0.8f,0.65f,0.1f};
-        GameObject key = makeBox("BrassKey",{-4.0f,0.95f,-0.95f},{0.12f,0.05f,0.04f},km,false);
+        Material km; km.color={0.85f,0.68f,0.05f};
+        GameObject key = makeBox("BrassKey",{-4.0f,1.02f,-0.65f},{0.14f,0.06f,0.05f},km,false);
         key.visible    = false;
+        key.solid      = false;
         key.interaction= InteractionType::PICKUP;
-        key.interactMsg= "A small brass key.";
+        key.interactMsg= "A small brass key. Pick it up! [E]";
         key.givesItem  = ItemType::KEY_BRASS;
         r.objects.push_back(key);
     }
@@ -245,11 +254,11 @@ void SceneManager::buildStudyRoom(Room& r) {
     // Bookshelf (north wall)
     {
         Material sm; sm.color={0.28f,0.17f,0.07f};
-        r.objects.push_back(makeBox("Shelf",{0,1.5f,-5.6f},{4.f,2.5f,0.4f},sm));
+        r.objects.push_back(makeBox("Shelf",{1.5f,1.5f,-5.6f},{3.f,2.5f,0.4f},sm));
 
         // Book clue item
         Material bm; bm.color={0.6f,0.08f,0.08f};
-        GameObject book = makeBox("BookClue",{0.5f,1.5f,-5.5f},{0.15f,0.35f,0.3f},bm,false);
+        GameObject book = makeBox("BookClue",{1.5f,1.5f,-5.5f},{0.15f,0.35f,0.3f},bm,false);
         book.interaction = InteractionType::PICKUP;
         book.interactMsg = "An old tome. The spine reads: LEFT, RIGHT, MIDDLE.";
         book.givesItem   = ItemType::BOOK_CLUE;
@@ -268,16 +277,26 @@ void SceneManager::buildStudyRoom(Room& r) {
 
     // Light sequence panel (wall, north)
     {
+        // Decorative back panel
         Material pm; pm.color={0.1f,0.1f,0.15f};
-        r.objects.push_back(makeBox("SeqPanel",{-2.f,1.5f,-5.7f},{1.2f,0.6f,0.1f},pm,false));
-        // 4 light buttons on panel
+        r.objects.push_back(makeBox("SeqPanel",{-2.f,1.5f,-5.7f},{1.6f,0.6f,0.1f},pm,false));
+
+        // Start button (distinct, located below the panel)
+        Material startMat; startMat.color={0.1f, 0.5f, 0.1f}; // Green
+        GameObject startBtn = makeBox("SeqStartBtn",{-2.f, 1.0f, -5.7f},{0.5f,0.2f,0.1f},startMat,false);
+        startBtn.interaction = InteractionType::PUZZLE;
+        startBtn.interactMsg = "Press [E] to Play Sequence";
+        startBtn.puzzleId    = 2;
+        r.objects.push_back(startBtn);
+
+        // 4 input buttons on panel
         for (int i = 0; i < 4; i++) {
-            Material bm; bm.color={0.05f,0.05f,0.05f};
+            Material bm; bm.color={0.2f,0.2f,0.2f};
             float bx = -2.6f + i * 0.4f;
             GameObject btn = makeBox("SeqBtn"+std::to_string(i),
-                {bx, 1.5f,-5.62f},{0.25f,0.25f,0.06f},bm,false);
+                {bx, 1.5f,-5.62f},{0.25f,0.3f,0.06f},bm,false);
             btn.interaction= InteractionType::PUZZLE;
-            btn.interactMsg= "Press to enter sequence.";
+            btn.interactMsg= "Input Button " + std::to_string(i+1) + " [E]";
             btn.puzzleId   = 2;  // LIGHT_SEQUENCE puzzle
             r.objects.push_back(btn);
         }
@@ -300,6 +319,11 @@ void SceneManager::buildStudyRoom(Room& r) {
         float lx = -1.5f + i * 1.5f;
         GameObject lever = makeBox("Lever"+std::to_string(i),
             {lx, 1.2f, 5.6f},{0.15f,0.5f,0.1f},lm,false);
+        lever.isDoor      = true;
+        lever.isOpen      = false;
+        lever.openAngle   = 45.f; // pulls down
+        lever.doorAxis    = {1.f, 0.f, 0.f}; // rotates on X axis
+        lever.animSpeed   = 200.f;
         lever.interaction = InteractionType::PUZZLE;
         lever.interactMsg = "Pull the lever.";
         lever.puzzleId    = 3;  // LEVER_SEQUENCE puzzle
@@ -310,6 +334,7 @@ void SceneManager::buildStudyRoom(Room& r) {
     {
         Material pm; pm.color={0.2f,0.2f,0.3f};
         GameObject plate = makeBox("PressurePlate",{0.f,0.001f,0.f},{1.f,0.04f,1.f},pm,false);
+        plate.visible     = false;  // Hidden until lever sequence (puzzle 3) is solved
         plate.interaction = InteractionType::PUZZLE;
         plate.interactMsg = "A pressure plate...";
         plate.puzzleId    = 4;
@@ -321,8 +346,8 @@ void SceneManager::buildStudyRoom(Room& r) {
         Material dm; dm.color={0.15f,0.1f,0.08f};
         GameObject door = makeBox("DoorToVault",{5.91f,1.05f,0.f},{0.2f,2.1f,0.9f},dm);
         door.isDoor      = true;
-        door.interaction = InteractionType::PUZZLE;
-        door.interactMsg = "A keypad lock. Enter the 4-digit code.";
+        door.interaction = InteractionType::INSPECT;
+        door.interactMsg = "The keypad is disabled. It needs power.";
         door.puzzleId    = 5;  // CODE_PAD
         door.leadsToRoom = 2;
         r.objects.push_back(door);
@@ -362,79 +387,207 @@ void SceneManager::buildVault(Room& r) {
         Material m; m.diffuseTex=tex; m.useTexture=(tex!=0); m.color=col; return m;
     };
 
-    // Room shell (10x10)
+    // Room shell (10x10) — north wall split for doorway
     r.objects.push_back(makeBox("Floor",  {0,-0.05f,0},{10,0.1f,10},makeMat(metalTex)));
     r.objects.push_back(makeBox("Ceiling",{0,3.05f,0}, {10,0.1f,10},makeMat(stoneTex)));
-    r.objects.push_back(makeBox("WallN",  {0,1.5f,-5}, {10,3.1f,0.2f},makeMat(metalTex)));
+    // North wall: left segment + right segment + lintel above door
+    r.objects.push_back(makeBox("WallNL", {-3.2f,1.5f,-5},{3.6f,3.1f,0.2f},makeMat(metalTex)));
+    r.objects.push_back(makeBox("WallNR", { 3.2f,1.5f,-5},{3.6f,3.1f,0.2f},makeMat(metalTex)));
+    r.objects.push_back(makeBox("WallNT", {0.f,2.65f,-5},{2.8f,0.8f,0.2f},makeMat(metalTex)));
     r.objects.push_back(makeBox("WallS",  {0,1.5f, 5}, {10,3.1f,0.2f},makeMat(metalTex)));
     r.objects.push_back(makeBox("WallW",  {-5,1.5f,0},{0.2f,3.1f,10},makeMat(metalTex)));
     r.objects.push_back(makeBox("WallE",  { 5,1.5f,0},{0.2f,3.1f,10},makeMat(metalTex)));
 
-    // Mirror (rotatable)
+    // ── Riddle Tablet (west wall) ──
     {
-        Material mm; mm.color={0.85f,0.90f,0.95f};
-        GameObject mirror = makeBox("Mirror",{-2.f,1.5f,-4.8f},{0.6f,1.0f,0.06f},mm,false);
+        Material tbm; tbm.color={0.35f,0.3f,0.25f};
+        r.objects.push_back(makeBox("TabletBG",{-4.85f,1.6f,0.f},{0.1f,0.8f,1.4f},tbm,false));
+        Material tm; tm.color={0.9f,0.85f,0.7f};
+        GameObject tablet = makeBox("RiddleTablet",{-4.82f,1.6f,0.f},{0.06f,0.6f,1.2f},tm,false);
+        tablet.interaction = InteractionType::INSPECT;
+        tablet.interactMsg = "A compass is etched here. It says: 'Follow the winds: North, East, West, South.'";
+        r.objects.push_back(tablet);
+    }
+
+    // ── Table in the corner (where key appears) ──
+    {
+        Material tm; tm.color={0.25f,0.2f,0.15f};
+        r.objects.push_back(makeBox("SmallTable",{-3.5f,0.4f,-3.5f},{0.6f,0.05f,0.6f},tm));
+        r.objects.push_back(makeBox("TableLeg",{-3.5f,0.2f,-3.5f},{0.1f,0.4f,0.1f},tm));
+
+        Material km; km.color={0.5f,0.5f,0.55f};
+        GameObject key = makeBox("IronKey",{-3.5f,0.48f,-3.5f},{0.15f,0.08f,0.04f},km,false);
+        key.visible = false;
+        key.interaction = InteractionType::PICKUP;
+        key.interactMsg = "An iron key.";
+        key.givesItem = ItemType::KEY_IRON;
+        r.objects.push_back(key);
+    }
+
+    // ── 4 Wall Buttons (Puzzle 6 - sequence) ──
+    {
+        Material bm; bm.color={0.4f,0.35f,0.3f};
+        // Button 0: North
+        GameObject btnN = makeBox("VaultSwitch0",{2.5f,1.3f,-4.85f},{0.15f,0.15f,0.06f},bm,false);
+        btnN.interaction = InteractionType::PUZZLE;
+        btnN.interactMsg = "A stone button on the North wall.";
+        btnN.puzzleId = 6;
+        r.objects.push_back(btnN);
+
+        // Button 1: East
+        GameObject btnE = makeBox("VaultSwitch1",{4.85f,1.3f,1.5f},{0.06f,0.15f,0.15f},bm,false);
+        btnE.interaction = InteractionType::PUZZLE;
+        btnE.interactMsg = "A stone button on the East wall.";
+        btnE.puzzleId = 6;
+        r.objects.push_back(btnE);
+
+        // Button 2: West
+        GameObject btnW = makeBox("VaultSwitch2",{-4.85f,1.3f,1.5f},{0.06f,0.15f,0.15f},bm,false);
+        btnW.interaction = InteractionType::PUZZLE;
+        btnW.interactMsg = "A stone button on the West wall.";
+        btnW.puzzleId = 6;
+        r.objects.push_back(btnW);
+
+        // Button 3: South
+        GameObject btnS = makeBox("VaultSwitch3",{1.5f,1.3f,4.85f},{0.15f,0.15f,0.06f},bm,false);
+        btnS.interaction = InteractionType::PUZZLE;
+        btnS.interactMsg = "A stone button on the South wall.";
+        btnS.puzzleId = 6;
+        r.objects.push_back(btnS);
+    }
+
+    // ── Locked Chest (south wall, near bench) ──
+    {
+        // Chest body
+        Material chm; chm.color={0.35f,0.22f,0.1f};
+        r.objects.push_back(makeBox("LockedChestBody",{-3.f,0.3f,4.f},{1.0f,0.6f,0.6f},chm));
+        
+        // Chest lid (animates open)
+        GameObject lid = makeBox("LockedChest",{-3.f,0.65f,4.f},{1.0f,0.1f,0.6f},chm);
+        lid.interaction = InteractionType::DOOR;
+        lid.interactMsg = "A heavy iron-bound chest. It's locked.";
+        lid.puzzleId = 7;
+        lid.requiredItem = ItemType::KEY_IRON;
+        lid.isDoor = false; // We'll manually trigger it in the puzzle solver to avoid regular door logic taking over
+        lid.isOpen = false;
+        lid.openAngle = 80.f; // pulls up and back
+        lid.doorAxis = {1.f, 0.f, 0.f}; // hinge on X axis
+        lid.animSpeed = 100.f;
+        r.objects.push_back(lid);
+
+        // Chest lock detail
+        Material lkm; lkm.color={0.6f,0.5f,0.15f};
+        r.objects.push_back(makeBox("ChestLock",{-3.f,0.45f,3.68f},{0.15f,0.15f,0.06f},lkm,false));
+    }
+
+    // ── Red Crystal (hidden inside chest, easily visible when lid opens) ──
+    {
+        Material cm; cm.color={0.9f,0.15f,0.1f};
+        GameObject crystal = makeBox("RedCrystal",{-3.f,0.65f,3.6f},{0.18f,0.18f,0.18f},cm,false);
+        crystal.visible = false;
+        crystal.interaction = InteractionType::PICKUP;
+        crystal.interactMsg = "A crimson crystal, pulsing with ancient energy.";
+        crystal.givesItem = ItemType::CRYSTAL_RED;
+        r.objects.push_back(crystal);
+    }
+
+    // ── Crystal Altar (center of room) ──
+    {
+        Material am; am.color={0.18f,0.15f,0.22f};
+        r.objects.push_back(makeBox("AltarBase",{0.f,0.35f,0.f},{1.0f,0.7f,1.0f},am));
+        Material at; at.color={0.25f,0.2f,0.3f};
+        r.objects.push_back(makeBox("AltarTop",{0.f,0.72f,0.f},{1.1f,0.04f,1.1f},at,false));
+        // Single crystal slot
+        Material sm; sm.color={0.12f,0.1f,0.15f};
+        r.objects.push_back(makeBox("CrystalSlot",{0.f,0.78f,0.f},{0.25f,0.1f,0.25f},sm,false));
+        // Altar interaction
+        GameObject altarUse = makeBox("Altar",{0.f,0.85f,0.f},{1.0f,0.1f,1.0f},at,false);
+        altarUse.visible = true;
+        altarUse.interaction = InteractionType::PUZZLE;
+        altarUse.interactMsg = "An ancient altar with an empty crystal slot.";
+        altarUse.puzzleId = 8;
+        r.objects.push_back(altarUse);
+    }
+
+    // ── Light Emitter (south wall, hidden until plates solved) ──
+    {
+        Material em; em.color={0.15f,0.15f,0.2f};
+        GameObject emitter = makeBox("LightEmitter",{0.f,1.5f,4.85f},{0.4f,0.4f,0.1f},em,false);
+        emitter.visible = false;
+        r.objects.push_back(emitter);
+
+        Material lm; lm.color={1.f,0.9f,0.3f};
+        GameObject lens = makeBox("EmitterLens",{0.f,1.5f,4.78f},{0.15f,0.15f,0.06f},lm,false);
+        lens.visible = false;
+        r.objects.push_back(lens);
+    }
+
+    // ── Laser beam: emitter to mirror (thin ray, hidden until plates solved) ──
+    {
+        Material bm; bm.color={1.f,0.95f,0.3f};
+        GameObject beam = makeBox("LaserBeam",{0.f,1.5f,2.4f},{0.02f,0.02f,4.7f},bm,false);
+        beam.visible = false;
+        r.objects.push_back(beam);
+    }
+
+    // ── Mirror (on top of altar, rotatable, hidden until crystal placed) ──
+    {
+        Material sm; sm.color={0.2f,0.2f,0.25f};
+        GameObject stand = makeBox("MirrorStand",{0.f,1.0f,0.f},{0.15f,0.5f,0.15f},sm);
+        stand.visible = false;
+        r.objects.push_back(stand);
+
+        Material mm; mm.color={0.85f,0.9f,0.95f}; mm.shininess=128.f;
+        GameObject mirror = makeBox("Mirror",{0.f,1.5f,0.f},{0.5f,0.6f,0.05f},mm,false);
+        mirror.visible     = false;
         mirror.interaction = InteractionType::PUZZLE;
-        mirror.interactMsg = "A mounted mirror. [Q/E] to rotate.";
-        mirror.puzzleId    = 6;  // MIRROR_LIGHT
+        mirror.interactMsg = "A polished mirror on a swivel. [Q/E] to rotate.";
+        mirror.puzzleId    = 9;
         r.objects.push_back(mirror);
     }
 
-    // Light source (beam)
+    // ── Reflected beam: mirror to sensor (thin ray, hidden until mirror correct) ──
+    // Mirror at (0, 1.5, 0), Sensor at (-2.2, 1.5, -4.88)
+    // Midpoint: (-1.1, 1.5, -2.44), Length: sqrt(2.2^2 + 4.88^2) ≈ 5.35
+    // Angle: atan2(-2.2, -4.88) ≈ 24.3 degrees from -Z axis
     {
-        Material bm; bm.color={1.f,0.95f,0.4f};
-        r.objects.push_back(makeBox("LightBeam",{-4.f,1.5f,-4.9f},{0.2f,0.2f,0.2f},bm,false));
+        Material bm; bm.color={1.f,0.95f,0.3f};
+        GameObject refBeam = makeBox("ReflectedBeam",{-1.1f,1.5f,-2.44f},{0.02f,0.02f,5.35f},bm,false);
+        refBeam.visible = false;
+        refBeam.transform.rotation.y = 24.3f;
+        r.objects.push_back(refBeam);
     }
 
-    // Light sensor
+    // ── Photo Sensor (near final door, north wall) ──
     {
-        Material sm; sm.color={0.1f,0.8f,0.1f};
-        GameObject sensor = makeBox("Sensor",{2.f,1.5f,-4.85f},{0.25f,0.25f,0.06f},sm,false);
+        Material sm; sm.color={0.15f,0.6f,0.15f};
+        GameObject sensor = makeBox("PhotoSensor",{-2.2f,1.5f,-4.88f},{0.25f,0.25f,0.06f},sm,false);
         sensor.interaction = InteractionType::INSPECT;
-        sensor.interactMsg = "A photo sensor. Needs direct light.";
-        sensor.puzzleId    = 6;
+        sensor.interactMsg = "A photo-sensitive receptor. Needs a beam of light.";
         r.objects.push_back(sensor);
     }
 
-    // 3 Pressure plates
+    // ── Final exit door (north wall) ──
     {
-        glm::vec3 platePos[3] = {{-2.f,0.001f,0.f},{0.f,0.001f,0.f},{2.f,0.001f,0.f}};
-        glm::vec3 colors[3]   = {{0.8f,0.2f,0.2f},{0.2f,0.8f,0.2f},{0.2f,0.2f,0.8f}};
-        for (int i=0;i<3;i++) {
-            Material pm; pm.color=colors[i];
-            GameObject plate = makeBox("VaultPlate"+std::to_string(i),
-                platePos[i],{0.8f,0.04f,0.8f},pm,false);
-            plate.interaction = InteractionType::PUZZLE;
-            plate.interactMsg = "A pressure plate. Step on them in order!";
-            plate.puzzleId    = 5;  // PRESSURE_PLATE
-            r.objects.push_back(plate);
-        }
-    }
-
-    // Final exit door
-    {
-        Material dm; dm.color={0.1f,0.4f,0.1f};
-        GameObject door = makeBox("FinalDoor",{0.f,1.05f,-4.91f},{1.2f,2.1f,0.18f},dm);
+        Material dm; dm.color={0.12f,0.1f,0.08f};
+        GameObject door = makeBox("FinalDoor",{0.f,1.05f,-4.91f},{1.4f,2.1f,0.18f},dm);
         door.isDoor      = true;
         door.interaction = InteractionType::DOOR;
-        door.interactMsg = "The final exit. Solve all puzzles to open!";
-        door.puzzleId    = 6;
+        door.interactMsg = "A massive iron door. The sensor beside it is dark.";
+        door.puzzleId    = -1;
         r.objects.push_back(door);
+
+        Material fm; fm.color={0.4f,0.35f,0.15f};
+        r.objects.push_back(makeBox("DoorFrame",{0.f,1.5f,-4.95f},{1.7f,2.5f,0.08f},fm,false));
     }
 
-    // Lights
+    // ── Lights (dim — vault starts dark) ──
     {
         PointLight l;
-        l.position={0,2.7f,0}; l.color={0.5f,0.6f,1.0f};
-        l.baseIntensity=5.0f; l.intensity=5.0f; l.radius=25.f;
-        l.flickers=true; l.flickerSpeed=2.f; l.flickerAmp=0.1f;
+        l.position={0,2.7f,0}; l.color={0.3f,0.35f,0.6f};
+        l.baseIntensity=1.5f; l.intensity=1.5f; l.radius=20.f;
+        l.flickers=true; l.flickerSpeed=3.f; l.flickerAmp=0.3f;
         r.lighting.addLight(l);
-
-        PointLight l2;
-        l2.position={-3.f,1.5f,-3.f}; l2.color={1.f,0.85f,0.3f};
-        l2.baseIntensity=4.0f; l2.intensity=4.0f; l2.radius=15.f;
-        l2.flickers=false;
-        r.lighting.addLight(l2);
     }
 }
 

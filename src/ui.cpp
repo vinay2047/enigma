@@ -175,10 +175,11 @@ void UI::drawCrosshair(unsigned int sh, const glm::mat4& ortho) {
 }
 
 void UI::drawInteractPrompt(const std::string& msg, unsigned int sh, const glm::mat4& ortho) {
-    float w = msg.size()*7.f*2.f + 20;
+    float scale = 2.0f;
+    float w = msg.size() * (6.f * scale) + 10.f; // 6 pixels per char
     float x = (screenW-w)/2.f, y = screenH*0.65f;
-    drawFilledRect(x-5,y-5,w+10,26,{0,0,0,0.6f},sh,ortho);
-    drawText(msg, x, y, 2.f, {1,0.9f,0.4f,1.f},sh,ortho);
+    drawFilledRect(x-5,y-5,w+10,8.f*scale + 10.f,{0,0,0,0.6f},sh,ortho);
+    drawText(msg, x, y, scale, {1,0.9f,0.4f,1.f},sh,ortho);
 }
 
 void UI::drawInventory(const Inventory& inv, unsigned int sh, const glm::mat4& ortho) {
@@ -194,8 +195,12 @@ void UI::drawInventory(const Inventory& inv, unsigned int sh, const glm::mat4& o
         drawFilledRect(x,y,slotW,slotH,{0.1f,0.1f,0.15f,0.8f},sh,ortho);
         drawFilledRect(x+1,y+1,slotW-2,slotH-2,{0.25f,0.20f,0.35f,0.8f},sh,ortho);
         const auto& item = inv.items()[i];
-        std::string label = item.name.substr(0,3);
-        drawText(label, x+4, y+18, 1.8f, {1,0.9f,0.5f,1.f},sh,ortho);
+        std::string label = item.name;
+        // center text roughly inside the 48x48 box, scaled down to fit
+        float scale = label.size() > 5 ? 1.0f : 1.5f;
+        float textW = label.size() * (6.f * scale);
+        float tx = x + (slotW - textW)/2.f;
+        drawText(label, tx, y+20, scale, {1,0.9f,0.5f,1.f},sh,ortho);
     }
 }
 
@@ -251,7 +256,7 @@ void UI::drawHUD(float fps, float timerLeft, unsigned int sh, const glm::mat4& o
         timerLeft<60?glm::vec4{1,0.2f,0.2f,1}:glm::vec4{0.9f,0.9f,0.5f,1},sh,ortho);
 
     // Room name
-    drawText("ESCAPE ROOM", (screenW-80*1.8f)/2.f, 6, 1.8f, {0.5f,0.4f,0.7f,0.7f},sh,ortho);
+    drawText("ENIGMA", (screenW-50*1.8f)/2.f, 6, 1.8f, {0.5f,0.4f,0.7f,0.7f},sh,ortho);
 }
 
 void UI::drawWinScreen(unsigned int sh, const glm::mat4& ortho) {
@@ -278,7 +283,7 @@ void UI::drawPauseMenu(unsigned int sh, const glm::mat4& ortho) {
 void UI::drawMainMenu(unsigned int sh, const glm::mat4& ortho) {
     drawFilledRect(0,0,(float)screenW,(float)screenH,{0.02f,0.01f,0.04f,1.f},sh,ortho);
     // Title
-    drawText("ESCAPE ROOM",  screenW/2.f-110, screenH/2.f-120, 6.f,{0.7f,0.3f,1.f,1.f},sh,ortho);
+    drawText("ENIGMA",  screenW/2.f-60, screenH/2.f-120, 6.f,{0.7f,0.3f,1.f,1.f},sh,ortho);
     drawText("A Mystery in the Dark", screenW/2.f-130,screenH/2.f-50,2.f,{0.5f,0.4f,0.6f,1},sh,ortho);
     drawText("[Enter] Start Game",    screenW/2.f-90, screenH/2.f+20,2.5f,{0.9f,0.8f,0.3f,1},sh,ortho);
     drawText("[L]     Load Save",     screenW/2.f-90, screenH/2.f+60,2.f, {0.4f,0.7f,0.4f,1},sh,ortho);

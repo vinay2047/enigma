@@ -1,22 +1,27 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 
+# If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
+# existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
+# would cause a fatal error, even though it would be a no-op.
+if(NOT EXISTS "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-src")
+  file(MAKE_DIRECTORY "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-src")
+endif()
 file(MAKE_DIRECTORY
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-src"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-build"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src"
-  "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-build"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src"
+  "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
 )
 
-set(configSubDirs )
+set(configSubDirs Debug)
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

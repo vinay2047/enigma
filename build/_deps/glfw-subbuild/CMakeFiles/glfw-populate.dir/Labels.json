@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/e008c8bb90da29d6da00febc0ed478b9/glfw-populate.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/1686a32afb71d2e2501444b5025b9591/glfw-populate-complete.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-build.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-configure.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-download.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-install.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-mkdir.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-patch.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-test.rule"
 		},
 		{
-			"file" : "/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update.rule"
+			"file" : "C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-update.rule"
 		}
 	],
 	"target" : 

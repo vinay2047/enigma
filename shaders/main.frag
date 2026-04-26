@@ -24,6 +24,7 @@ uniform PointLight lights[MAX_LIGHTS];
 uniform int        numLights;
 uniform float      ambientStrength;
 uniform vec3       ambientColor;
+uniform float      shininess;
 
 // Fog
 uniform float fogDensity;
@@ -51,10 +52,10 @@ void main()
         float dif = max(dot(norm, lightDir), 0.0);
         result += dif * lights[i].color * baseColor * atten;
 
-        // Specular (Blinn-Phong)
+        // Specular (Blinn-Phong) — uses per-object shininess uniform
         vec3  viewDir    = normalize(viewPos - FragPos);
         vec3  halfDir    = normalize(lightDir + viewDir);
-        float spec       = pow(max(dot(norm, halfDir), 0.0), 64.0);
+        float spec       = pow(max(dot(norm, halfDir), 0.0), shininess);
         result += spec * lights[i].color * 0.25 * atten;
     }
 

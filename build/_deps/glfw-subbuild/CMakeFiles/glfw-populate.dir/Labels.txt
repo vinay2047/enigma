@@ -1,14 +1,14 @@
 # Target labels
  glfw-populate
 # Source files and their labels
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test.rule
-/mnt/c/Users/akan/OneDrive/Documents/Labs/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/e008c8bb90da29d6da00febc0ed478b9/glfw-populate.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/1686a32afb71d2e2501444b5025b9591/glfw-populate-complete.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-build.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-configure.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-download.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-install.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-mkdir.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-patch.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-test.rule
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/2e3c51f591e2f1d0c9dab4c14ca879ee/glfw-populate-update.rule

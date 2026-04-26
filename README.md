@@ -1,5 +1,6 @@
 # Escape Room — 3D OpenGL C++ Game
-# akan deka
+## Vinay Akandeka
+
 ## Build Instructions
 
 ### Prerequisites
@@ -14,7 +15,7 @@
 ### Build Steps (Windows)
 
 ```bash
-cd C:\Users\akan\OneDrive\Documents\Labs\EscapeRoom
+cd EscapeRoom
 
 # Configure (downloads deps on first run — needs internet)
 cmake -B build -G "MinGW Makefiles"
@@ -52,7 +53,7 @@ build\EscapeRoom.exe
 ## Puzzle Walkthrough
 
 | # | Room | Puzzle | Solution |
-|---|------|--------|---------|
+|---|------|--------|----------|
 | 1 | Entry Hall | Hidden button | Press `E` on the painting, then the hidden button |
 | 2 | Entry Hall | Brass key lock | Pick up key, use on door |
 | 3 | Study Room | Light sequence | Watch 4 lights, press same order: 1→3→2→4 |
@@ -60,6 +61,19 @@ build\EscapeRoom.exe
 | 5 | Study Room | Pressure plate | Step on the plate that rises |
 | 6 | Study Room | Code pad | Enter `4821` (from code note) |
 | 7 | The Vault | Mirror light | Press `E` on mirror, rotate with `Q/E` until sensor lights green |
+
+---
+
+## Graphics Concepts Implemented
+
+| Concept | Implementation |
+|---------|---------------|
+| **3D Transformations** | Translation, rotation, scaling of all room objects; door hinge rotation animation |
+| **Camera / Projection** | First-person perspective camera with mouse look and WASD movement |
+| **Lighting** | Blinn-Phong shading with up to 8 point lights, per-object shininess, light flicker |
+| **Texture Mapping** | Procedural textures (stone, wood, metal, brick, carpet) on walls, floors, objects |
+| **Collision Detection** | AABB intersection + ray-cast picking + slide-based collision response |
+| **Particles** | CPU billboard particle system for dust/fog atmosphere |
 
 ---
 
@@ -82,7 +96,7 @@ EscapeRoom/
 │   ├── ui.h/.cpp         ← Full bitmap-font HUD (no freetype needed)
 │   └── saveload.h/.cpp   ← Binary save/load
 └── shaders/
-    ├── main.vert/frag    ← Phong + fog + 8 point lights
+    ├── main.vert/frag    ← Blinn-Phong + fog + 8 point lights + per-object shininess
     ├── shadow.vert/frag  ← Depth pass
     ├── particle.vert/frag← Billboard particles
     └── ui.vert/frag      ← 2D orthographic HUD

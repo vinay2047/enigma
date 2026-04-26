@@ -97,10 +97,17 @@ void Renderer::renderObject(const GameObject& obj, const Shader& sh) {
     // Door hinge rotation (around Y axis at hinge edge)
     if (obj.isDoor && obj.curAngle != 0.f) {
         glm::vec3 hinge = obj.transform.position;
-        hinge.z -= obj.transform.scale.z * 0.5f;
+        // Pick hinge edge based on door orientation
+        if (obj.transform.scale.x > obj.transform.scale.z) {
+            // Door spans X axis (e.g. north/south wall) — hinge on left X edge
+            hinge.x -= obj.transform.scale.x * 0.5f;
+        } else {
+            // Door spans Z axis (e.g. east/west wall) — hinge on near Z edge
+            hinge.z -= obj.transform.scale.z * 0.5f;
+        }
         model = glm::mat4(1.f);
         model = glm::translate(model, hinge);
-        model = glm::rotate(model, glm::radians(obj.curAngle), {0.f,1.f,0.f});
+        model = glm::rotate(model, glm::radians(obj.curAngle), obj.doorAxis);
         model = glm::translate(model, -hinge + obj.transform.position);
     }
 
@@ -114,6 +121,7 @@ void Renderer::renderObject(const GameObject& obj, const Shader& sh) {
     // Material
     sh.setBool("useTexture", obj.material.useTexture);
     sh.setVec3("objectColor", obj.material.color);
+    sh.setFloat("shininess", obj.material.shininess);
     if (obj.material.useTexture) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, obj.material.diffuseTex);
@@ -129,8 +137,9 @@ void Renderer::renderRoom(const Room& room, const glm::mat4& view,
                            const glm::mat4& proj, const glm::vec3& eyePos)
 {
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    // No backface culling — player is INSIDE the room boxes,
+    // so interior faces must be visible from both sides.
+    glDisable(GL_CULL_FACE);
 
     mainShader.use();
     mainShader.setMat4("view",       view);

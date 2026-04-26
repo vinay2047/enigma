@@ -9,7 +9,10 @@ enum class ItemType {
     KEY_IRON,
     CODE_NOTE,
     BOOK_CLUE,
-    MIRROR_SHARD
+    MIRROR_SHARD,
+    CRYSTAL_RED,
+    CRYSTAL_BLUE,
+    CRYSTAL_GREEN
 };
 
 struct InventoryItem {
