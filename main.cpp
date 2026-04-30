@@ -191,13 +191,13 @@ static void setupPuzzles()
         };
         g_puzzles.addPuzzle(p);
     }
-    // 6: Compass Button Sequence (Vault)
+    
     {
         Puzzle p; p.type=PuzzleType::LEVER_SEQUENCE;
-        p.sequence={0,1,2,3}; // N, E, W, S
+        p.sequence={0,1,2,3}; 
         std::shuffle(p.sequence.begin(), p.sequence.end(), rng);
         p.leverPulled={false,false,false,false};
-        // Build hint from shuffled sequence
+       
         static const char* dirNames[] = {"North", "East", "West", "South"};
         std::string hintStr = "The compass says: ";
         for (int i = 0; i < (int)p.sequence.size(); i++) {
@@ -206,7 +206,7 @@ static void setupPuzzles()
         }
         hintStr += ".";
         p.hint = hintStr;
-        // Update the tablet in the vault with the new order
+        
         Room& vaultRoom = g_scene.rooms[2];
         for (auto& o : vaultRoom.objects) {
             if (o.name == "RiddleTablet") {

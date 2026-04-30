@@ -72,10 +72,8 @@ if(WIN32)
     target_link_libraries(EscapeRoom PRIVATE opengl32)
 endif()
 
-# Copy runtime assets
+# Copy runtime assets (shaders are loaded from disk at startup)
 add_custom_command(TARGET EscapeRoom POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/shaders $<TARGET_FILE_DIR:EscapeRoom>/shaders
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/assets  $<TARGET_FILE_DIR:EscapeRoom>/assets
 )

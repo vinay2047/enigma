@@ -1,0 +1,10 @@
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLAD-SUBBUILD\CMAKEFILES\A3B4DC210C1D8C427AC3A3C69A292138\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-subbuild -BC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-subbuild/glad-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

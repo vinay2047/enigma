@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.3/Modules/FindPython.cmake
+C:/Program Files/CMake/share/cmake-4.3/Modules/FindPython/Support.cmake
+C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-src/CMakeLists.txt

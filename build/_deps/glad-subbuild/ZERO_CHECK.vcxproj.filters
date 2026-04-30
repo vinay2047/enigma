@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glad-subbuild\CMakeFiles\a3b4dc210c1d8c427ac3a3c69a292138\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{994002D7-AAB7-34A2-A7FF-E7EA271AA3B1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

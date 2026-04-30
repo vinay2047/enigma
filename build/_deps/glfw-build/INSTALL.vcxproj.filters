@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\CMakeFiles\a31bee26441b377c04cf62665e51bcfc\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5486600E-5790-3F9B-A57E-8CE16E8A74CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

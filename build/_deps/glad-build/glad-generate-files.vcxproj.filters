@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\CMakeFiles\3e8186e8e5c19a6d890c3b9678b03cb8\glad.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\CMakeFiles\b5c7a8f8afb3caea693421853777ef8d\glad-generate-files.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glad-src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glad-build\CMakeFiles\glad-generate-files" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5486600E-5790-3F9B-A57E-8CE16E8A74CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

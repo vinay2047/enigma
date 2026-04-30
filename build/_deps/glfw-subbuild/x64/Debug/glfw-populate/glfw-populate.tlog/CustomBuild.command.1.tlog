@@ -1,0 +1,150 @@
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-UPDATE.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glfw-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glfw-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glfw-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glfw-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\2E3C51F591E2F1D0C9DAB4C14CA879EE\GLFW-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glfw-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\1686A32AFB71D2E2501444B5025B9591\GLFW-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/Debug/glfw-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/Debug/glfw-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKEFILES\E008C8BB90DA29D6DA00FEBC0ED478B9\GLFW-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLFW-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild -BC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild --check-stamp-file C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

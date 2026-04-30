@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/cmake_install.cmake",
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-build/cmake_install.cmake",
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glfw-build/src/cmake_install.cmake",
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-build/cmake_install.cmake",
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glm-build/cmake_install.cmake",
+		"C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glm-build/glm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
