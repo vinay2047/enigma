@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\x64\Debug\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glad-build\x64\Debug\glad-generate-files</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\Debug\EscapeRoom.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\x64\Debug\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

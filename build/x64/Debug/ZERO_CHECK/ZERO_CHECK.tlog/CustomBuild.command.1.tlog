@@ -1,0 +1,10 @@
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\CMAKEFILES\CB8629A8597925FCD02CBFE0CC8D20FB\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom -BC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/EscapeRoom.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

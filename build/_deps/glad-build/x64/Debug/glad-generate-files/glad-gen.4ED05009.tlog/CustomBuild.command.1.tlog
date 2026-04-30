@@ -1,0 +1,32 @@
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\CMAKEFILES\3E8186E8E5C19A6D890C3B9678B03CB8\GLAD.H.RULE
+setlocal
+cd C:\Users\vinay\OneDrive\Desktop\github\escape-room\EscapeRoom\build\_deps\glad-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Python313\python.exe -m glad --profile=core --out-path=C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-build --api=gl=3.3 --generator=c --extensions= --spec=gl
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\CMAKEFILES\B5C7A8F8AFB3CAEA693421853777EF8D\GLAD-GENERATE-FILES.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\VINAY\ONEDRIVE\DESKTOP\GITHUB\ESCAPE-ROOM\ESCAPEROOM\BUILD\_DEPS\GLAD-SRC\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom -BC:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build --check-stamp-file C:/Users/vinay/OneDrive/Desktop/github/escape-room/EscapeRoom/build/_deps/glad-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
