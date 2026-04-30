@@ -124,7 +124,7 @@ static void setupPuzzles()
         std::shuffle(p.sequence.begin(), p.sequence.end(), rng);
         p.leverPulled={false,false,false};
         // Build hint from shuffled sequence
-        static const char* leverNames[] = {"Right", "Middle", "Left"};
+        static const char* leverNames[] = {"Left", "Middle", "Right"};
         std::string hintStr = "The book says: ";
         for (int i = 0; i < (int)p.sequence.size(); i++) {
             if (i > 0) hintStr += ", ";
@@ -135,7 +135,7 @@ static void setupPuzzles()
         // Update the book in the study room with the new order
         Room& studyRoom = g_scene.rooms[1];
         for (auto& o : studyRoom.objects) {
-            if (o.name == "Book") {
+            if (o.name == "BookClue") {
                 o.interactMsg = "The book reads: '" + hintStr.substr(15) + "'";
             }
         }

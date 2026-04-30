@@ -54,7 +54,7 @@ bool PuzzleManager::interactLeverSequence(int id, int leverIndex) {
     p->playerSequence.push_back(leverIndex);
     int step = (int)p->playerSequence.size() - 1;
 
-    if (p->playerSequence[step] != p->sequence[step]) {
+    if (step >= (int)p->sequence.size() || p->playerSequence[step] != p->sequence[step]) {
         // Wrong order — reset
         p->playerSequence.clear();
         std::fill(p->leverPulled.begin(), p->leverPulled.end(), false);
@@ -74,7 +74,7 @@ bool PuzzleManager::interactPressurePlate(int id, int plateIndex) {
     if (!p || p->isSolved()) return false;
 
     int step = (int)p->playerSequence.size();
-    if (plateIndex != p->sequence[step]) {
+    if (step >= (int)p->sequence.size() || plateIndex != p->sequence[step]) {
         p->playerSequence.clear();
         return false;
     }
@@ -127,7 +127,7 @@ int PuzzleManager::lightSequenceCurrentStep(int id) const {
     if (id < 0 || id >= (int)puzzles.size()) return -1;
     const auto& p = puzzles[id];
     if (p.state != PuzzleState::IN_PROGRESS) return -1;
-    if (p.currentStep >= (int)p.sequence.size()) return -1;
+    if (p.currentStep < 0 || p.currentStep >= (int)p.sequence.size()) return -1;
     return p.sequence[p.currentStep];
 }
 
